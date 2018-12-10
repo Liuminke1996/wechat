@@ -5,16 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <title>Document</title>
 </head>
 <body>
-  <button onclick="login()">登录</button>
+  <button onclick="wxlogin.login()">登录1111</button>
 </body>
 <script>
-  alert(window.location.href)
-  function login(){
-    let url = encodeURI('https://liuminke1996.github.io/wechat/index.html');
-    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2a18e3dc23043171&redirect_uri='+url+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
+  let wxlogin = {
+    config:{
+      appId:'wx2a18e3dc23043171',
+      redirect_uri:encodeURI('https://liuminke1996.github.io/wechat/index.html')
+    },
+    login(){
+      const config = this.config;
+      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${config.appId}&redirect_uri=${config.redirect_uri}&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect`
+    },
+    getQuery(name){
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = window.location.search.substr(1).match(reg);
+      return r != null? unescape(r[2]):null
+    },
+    getCode(){
+      let code = this.getQuery('code')
+      if(code){
+        this.getAccessToken(code)
+      }
+    },
+    getAccessToken(code){
+      axios.get(`https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=${code}&grant_type=authorization_code`)
+      .then(function (res) {
+        alert(JSON.stringify(res));
+      }).catch(function (error) {
+        console.log(error);
+      });
+      
+    }
   }
+  wxlogin.getCode()
 </script>
 </html>
