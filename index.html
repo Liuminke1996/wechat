@@ -8,11 +8,11 @@
   <title>Document</title>
 </head>
 <body>
-  <button>登录</button>
+  <button onclick="login()">登录</button>
 </body>
 <script>
-  window.onload = function(){
-
+  function login(){
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2a18e3dc23043171&redirect_uri=https://liuminke1996.github.io/wechat/&response_type=code&scope=SCOPE&state=STATE#wechat_redirect'
   }
 </script>
 </html>
