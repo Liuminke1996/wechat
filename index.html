@@ -11,9 +11,10 @@
   <button onclick="login()">登录</button>
 </body>
 <script>
+  alert(window.location.href)
   function login(){
-    let url = encodeURI('https://liuminke1996.github.io/wechat/');
-    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2a18e3dc23043171&redirect_uri='+url+'&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect'
+    let url = encodeURI('https://liuminke1996.github.io/wechat/index.html');
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2a18e3dc23043171&redirect_uri='+url+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
   }
 </script>
 </html>
