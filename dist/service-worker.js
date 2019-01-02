@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.ea466d1f3c9f6f1ac7d0a96c6a2c990f.js"
+  "precache-manifest.d9a2be4d9329705ce58bddd00fd50fb4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "tgdd-mobile"});
